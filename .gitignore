@@ -1,0 +1,23 @@
+# Build output
+/rust/target/
+
+# Game-derived content (Nintendo's code and data): never committed. Everything below is
+# regenerated from your own copy of the game, see "Building from a fresh clone" in README.md.
+/src/
+/sheets/instructions.csv
+/sheets/memory.csv
+/sheets/strings.csv
+/rust/crates/recomp/
+/rust/crates/mkdd-recomp/mem/
+/rust/crates/mkdd-recomp/src/table.rs
+*.dol
+*.ciso
+*.iso
+*.gcm
+
+# Local files: save data, disc location, logs, probe output, screenshots
+/rust/memcard/
+disc.txt
+*.log
+/rust/*.txt
+/rust/*.png

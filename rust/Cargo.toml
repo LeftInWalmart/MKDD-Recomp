@@ -1,0 +1,379 @@
+[workspace]
+resolver = "3"
+members = [
+    "crates/gc-core",
+    "crates/gc-runtime",
+    "crates/mkdd-recomp",
+    "crates/mkdd-bevy",
+    "crates/recomp/part_00",
+    "crates/recomp/part_01",
+    "crates/recomp/part_02",
+    "crates/recomp/part_03",
+    "crates/recomp/part_04",
+    "crates/recomp/part_05",
+    "crates/recomp/part_06",
+    "crates/recomp/part_07",
+    "crates/recomp/part_08",
+    "crates/recomp/part_09",
+    "crates/recomp/part_10",
+    "crates/recomp/part_11",
+    "crates/recomp/part_12",
+    "crates/recomp/part_13",
+    "crates/recomp/part_14",
+    "crates/recomp/part_15",
+    "crates/recomp/part_16",
+    "crates/recomp/part_17",
+    "crates/recomp/part_18",
+    "crates/recomp/part_19",
+    "crates/recomp/part_20",
+    "crates/recomp/part_21",
+    "crates/recomp/part_22",
+    "crates/recomp/part_23",
+    "crates/recomp/part_24",
+    "crates/recomp/part_25",
+    "crates/recomp/part_26",
+    "crates/recomp/part_27",
+    "crates/recomp/part_28",
+    "crates/recomp/part_29",
+    "crates/recomp/part_30",
+    "crates/recomp/part_31",
+    "crates/recomp/part_32",
+    "crates/recomp/part_33",
+    "crates/recomp/part_34",
+    "crates/recomp/part_35",
+    "crates/recomp/part_36",
+    "crates/recomp/part_37",
+    "crates/recomp/part_38",
+    "crates/recomp/part_39",
+    "crates/recomp/part_40",
+    "crates/recomp/part_41",
+    "crates/recomp/part_42",
+    "crates/recomp/part_43",
+    "crates/recomp/part_44",
+    "crates/recomp/part_45",
+    "crates/recomp/part_46",
+    "crates/recomp/part_47",
+]
+
+# The game is played from this profile (play.bat). Debug assertions and integer overflow
+# checks would sit on every guest instruction and throughout Bevy, so they are off.
+# Debug info is off too: with it, target/ grew past 50 GB (a 1.2 GB .pdb per link).
+[profile.dev]
+opt-level = 1
+debug = false
+debug-assertions = false
+overflow-checks = false
+
+# Bevy and the runtime are small and hot: optimize them even in dev builds.
+[profile.dev.package."*"]
+opt-level = 3
+
+# The runtime (GX decoder, scheduler, DSP), dispatch and the app are workspace members,
+# which the wildcard above does not cover: optimize them fully (does not touch the parts).
+[profile.dev.package.gc-runtime]
+opt-level = 3
+
+[profile.dev.package.mkdd-recomp]
+opt-level = 3
+
+[profile.dev.package.mkdd-bevy]
+opt-level = 3
+
+# gc-core is the per-instruction hot path; inline and optimize it fully.
+[profile.dev.package.gc-core]
+opt-level = 3
+
+# The generated parts are huge. Full optimization with few codegen units (incremental
+# compilation would split each part into hundreds of units and block inlining between
+# guest functions) is what lets the game run at full speed; MKDD_PART_OPT=1 builds much
+# faster but runs slower.
+[profile.dev.package.mkdd-part-00]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-01]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-02]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-03]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-04]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-05]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-06]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-07]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-08]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-09]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-10]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-11]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-12]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-13]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-14]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-15]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-16]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-17]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-18]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-19]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-20]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-21]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-22]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-23]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-24]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-25]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-26]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-27]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-28]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-29]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-30]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-31]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-32]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-33]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-34]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-35]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-36]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-37]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-38]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-39]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-40]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-41]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-42]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-43]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-44]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-45]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-46]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.dev.package.mkdd-part-47]
+opt-level = 3
+debug = false
+codegen-units = 16
+incremental = false
+
+[profile.release]
+codegen-units = 16

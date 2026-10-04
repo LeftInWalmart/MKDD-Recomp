@@ -1,0 +1,106 @@
+name,addr,area,status,notes
+OSCreateThread,0x800EB780,threads,implemented,"Runs original to fill OSThread, then registers with host scheduler"
+OSResumeThread,0x800EBCA8,threads,implemented,Host scheduler; first resume spawns a host thread at context.srr0
+OSSuspendThread,0x800EBF30,threads,implemented,Host scheduler
+OSSleepThread,0x800EC0A0,threads,implemented,Blocks the host thread on the guest queue address
+OSWakeupThread,0x800EC18C,threads,implemented,Readies all threads waiting on the queue; preempts if higher priority
+OSYieldThread,0x800EB744,threads,implemented,Host scheduler
+__OSReschedule,0x800EB714,threads,implemented,Preemption check
+OSExitThread,0x800EB968,threads,implemented,"Marks thread dead, wakes joiners, parks host thread"
+OSCancelThread,0x800EBA4C,threads,implemented,Host scheduler
+SelectThread,0x800EB4EC,threads,implemented,Should be unreachable; logged
+OSLoadContext,0x800E7A18,threads,implemented,Should be unreachable (rfi context switch); logged
+OSSetAlarm,0x800E667C,alarms,implemented,Host timer; handler delivered like an interrupt
+OSSetPeriodicAlarm,0x800E66E4,alarms,implemented,Host timer
+OSCancelAlarm,0x800E6760,alarms,implemented,Host timer
+DVDInit,0x800ABE14,dvd,implemented,Only __DVDFSInit (FST pointers); no drive reset
+DVDReadAbsAsyncPrio,0x800AD9FC,dvd,implemented,"Synchronous copy from disc image, then callback; covers DVDReadAsyncPrio/DVDReadPrio"
+DVDReadDiskID,0x800ADBA8,dvd,implemented,Copies disc header
+DVDInquiryAsync,0x800ADD38,dvd,implemented,Zeroed drive info
+DVDCancelAsync,0x800ADFA4,dvd,implemented,Immediate
+DVDCancel,0x800AE220,dvd,implemented,Immediate
+DVDGetDriveStatus,0x800ADE98,dvd,implemented,Always idle
+DVDReset,0x800ADE08,dvd,implemented,No-op
+DVDResume,0x800ADF54,dvd,implemented,No-op
+DVDCheckDisk,0x800AE2F8,dvd,implemented,Always present
+DVDGetCommandBlockStatus,0x800ADE4C,dvd,implemented,Reads block->state
+PADInit,0x800ED7E0,pad,implemented,Always succeeds
+PADReset,0x800ED5BC,pad,implemented,Always succeeds
+PADRecalibrate,0x800ED6CC,pad,implemented,Always succeeds
+PADControlMotor,0x800EDC30,pad,implemented,No rumble
+PADSetSamplingCallback,0x800EE630,pad,implemented,Not called back
+PADRead,0x800ED930,pad,implemented,Port state from Bevy keyboard/gamepad input
+SIProbe,0x800EFF3C,pad,implemented,Reports a standard controller (SI_GC_CONTROLLER) on connected ports; JUTGamePad ignores pads of any other type
+SIGetType,0x800EFAF0,pad,implemented,Same as SIProbe
+__GXFifoLink,0x800BBF5C,gx,implemented,Tracks CPU-FIFO/GPU link so display-list recording is not drawn
+__AI_SRC_INIT,0x800B11A0,audio,implemented,Skips audio sample-rate calibration busy loop
+OSReport,0x800E8078,debug,implemented,Printed to log / mkdd_trace.log
+OSPanic,0x800E80F8,debug,implemented,Logged; thread parked
+OSResetSystem,0x800E9D64,system,implemented,Ignored (logged)
+__OSDoHotReset,0x800E9D1C,system,implemented,Ignored (logged)
+PPCHalt,0x800A9640,system,implemented,Logged; thread parked
+__OSInitAudioSystem,0x800E6DD0,audio,implemented,Skips DSP boot handshake (no DSP emulation)
+__OSStopAudioSystem,0x800E6F8C,audio,implemented,No-op (no DSP emulation)
+Dsp_Running_Check__Fv,0x800A23C0,audio,implemented,Always running: avoids audio thread busy-wait starving the game (no DSP emulation)
+DspBoot__FPFPv_v,0x800A1C40,audio,implemented,Captures JAudio DSP callback; DSP microcode is emulated in dsp.rs
+DSPSendCommands2__FPUlUlPFUs_v,0x800A1D00,audio,implemented,"DSP command HLE: 0x81 setup table, 0x82 render frame (dsp.rs)"
+CARDInit,0x800B4668,memcard,implemented,"Slot A emulated in memcard.rs, saved to memcard/slotA.bin"
+CARDProbeEx,0x800B7624,memcard,implemented,"Slot A emulated in memcard.rs, saved to memcard/slotA.bin"
+CARDMount,0x800B7E88,memcard,implemented,"Slot A emulated in memcard.rs, saved to memcard/slotA.bin"
+CARDMountAsync,0x800B7CE8,memcard,implemented,"Slot A emulated in memcard.rs, saved to memcard/slotA.bin"
+CARDUnmount,0x800B7F6C,memcard,implemented,"Slot A emulated in memcard.rs, saved to memcard/slotA.bin"
+CARDCheck,0x800B7504,memcard,implemented,"Slot A emulated in memcard.rs, saved to memcard/slotA.bin"
+CARDCheckExAsync,0x800B6F74,memcard,implemented,"Slot A emulated in memcard.rs, saved to memcard/slotA.bin"
+CARDFormat,0x800B87B4,memcard,implemented,"Slot A emulated in memcard.rs, saved to memcard/slotA.bin"
+CARDFreeBlocks,0x800B4870,memcard,implemented,"Slot A emulated in memcard.rs, saved to memcard/slotA.bin"
+CARDOpen,0x800B8D80,memcard,implemented,"Slot A emulated in memcard.rs, saved to memcard/slotA.bin"
+CARDFastOpen,0x800B8C7C,memcard,implemented,"Slot A emulated in memcard.rs, saved to memcard/slotA.bin"
+CARDClose,0x800B8E9C,memcard,implemented,"Slot A emulated in memcard.rs, saved to memcard/slotA.bin"
+CARDCreate,0x800B9248,memcard,implemented,"Slot A emulated in memcard.rs, saved to memcard/slotA.bin"
+CARDCreateAsync,0x800B9028,memcard,implemented,"Slot A emulated in memcard.rs, saved to memcard/slotA.bin"
+CARDRead,0x800B96BC,memcard,implemented,"Slot A emulated in memcard.rs, saved to memcard/slotA.bin"
+CARDReadAsync,0x800B9578,memcard,implemented,"Slot A emulated in memcard.rs, saved to memcard/slotA.bin"
+CARDWrite,0x800B9A38,memcard,implemented,"Slot A emulated in memcard.rs, saved to memcard/slotA.bin"
+CARDWriteAsync,0x800B9924,memcard,implemented,"Slot A emulated in memcard.rs, saved to memcard/slotA.bin"
+CARDDelete,0x800B9DA8,memcard,implemented,"Slot A emulated in memcard.rs, saved to memcard/slotA.bin"
+CARDDeleteAsync,0x800B9C98,memcard,implemented,"Slot A emulated in memcard.rs, saved to memcard/slotA.bin"
+CARDFastDelete,0x800B9C50,memcard,implemented,"Slot A emulated in memcard.rs, saved to memcard/slotA.bin"
+CARDFastDeleteAsync,0x800B9B24,memcard,implemented,"Slot A emulated in memcard.rs, saved to memcard/slotA.bin"
+CARDGetStatus,0x800B9FE8,memcard,implemented,"Slot A emulated in memcard.rs, saved to memcard/slotA.bin"
+CARDSetStatus,0x800BA270,memcard,implemented,"Slot A emulated in memcard.rs, saved to memcard/slotA.bin"
+CARDSetStatusAsync,0x800BA0FC,memcard,implemented,"Slot A emulated in memcard.rs, saved to memcard/slotA.bin"
+CARDRename,0x800BA4B4,memcard,implemented,"Slot A emulated in memcard.rs, saved to memcard/slotA.bin"
+CARDRenameAsync,0x800BA2B8,memcard,implemented,"Slot A emulated in memcard.rs, saved to memcard/slotA.bin"
+THPVideoDecode,0x800F0800,thp,implemented,"Native JPEG-variant decoder into I8 Y/U/V tiles (thp.rs); SDK code as fallback, MKDD_THP_NATIVE=0 forces it"
+PPCMfhid2,0x800A96CC,cpu,implemented,"HID2 is CPU-global: synced from/to a shared copy (per-thread register files otherwise lose LCEnable/PSE)"
+PPCMthid2,0x800A96D4,cpu,implemented,HID2 global sync
+__OSFPRInit,0x800E58D8,cpu,implemented,HID2 global sync
+__LCEnable,0x800E71E0,cpu,implemented,HID2 global sync (locked cache enable)
+LCDisable,0x800E72E4,cpu,implemented,HID2 global sync
+LCQueueWait,0x800E73DC,cpu,implemented,HID2 global sync
+__OSLoadFPUContext,0x800E76DC,cpu,implemented,HID2 global sync
+__OSSaveFPUContext,0x800E7800,cpu,implemented,HID2 global sync
+OSFillFPUContext,0x800E7F4C,cpu,implemented,HID2 global sync
+FUN_80110a50,0x80110A50,cpu,implemented,HID2 global sync
+FUN_80110c08,0x80110C08,cpu,implemented,HID2 global sync
+FUN_80012df0,0x80012DF0,diag,diagnostic,"JKRExpHeap::allocFromHead: verifies the free list before running the original"
+ARQPostRequest,0x800B3098,diag,diagnostic,"Records posted ARAM queue requests so ARStartDMA can verify in-flight requests weren't mutated (heap-corruption hunt)"
+ARStartDMA,0x800B13C8,diag,diagnostic,"Checks each chunk against the posted ARQ request"
+__ARQServiceQueueLo,0x800B2E58,diag,diagnostic,ARQ event trace (heap-corruption hunt)
+__ARQInterruptServiceRoutine,0x800B2F5C,diag,diagnostic,ARQ event trace (heap-corruption hunt)
+OSDisableInterrupts,0x800E877C,cpu,implemented,"Clears MSR.EE, returns previous EE. The SLEIGH mtmsr semantics preserve the old EE bit, so the recompiled body never disabled interrupts"
+OSEnableInterrupts,0x800E8790,cpu,implemented,"Sets MSR.EE, returns previous EE (see OSDisableInterrupts)"
+OSRestoreInterrupts,0x800E87A4,cpu,implemented,"MSR.EE = (r3 != 0), returns previous EE (see OSDisableInterrupts)"
+PPCMtmsr,0x800A9608,cpu,implemented,"MSR = r3 including EE (see OSDisableInterrupts)"
+PSMTXCopy,0x800A9740,math,implemented,"Native MTX library (psmtx.rs): single-precision fused steps in the SDK's accumulation order"
+PSMTXConcat,0x800A9774,math,implemented,"Native MTX library (psmtx.rs): single-precision fused steps in the SDK's accumulation order"
+PSMTXMultVec,0x800AA04C,math,implemented,"Native MTX library (psmtx.rs): single-precision fused steps in the SDK's accumulation order"
+PSVECCrossProduct,0x800AA504,math,implemented,"Native MTX library (psmtx.rs): single-precision fused steps in the SDK's accumulation order"
+PSVECMag,0x800AA4A0,math,implemented,"Native MTX library (psmtx.rs): single-precision fused steps in the SDK's accumulation order"
+PSMTXInverse,0x800A9890,math,implemented,"Native MTX library (psmtx.rs): single-precision fused steps in the SDK's accumulation order"
+sendCmdMsg__13JASTaskThreadFPFPv_vPv,0x80091890,audio-diag,diagnostic,"Runs the original; logs failures (queue full / message pool exhausted), which make JASAramStream stop for good"
+sendCmdMsg__13JASTaskThreadFPFPv_vPCvUl,0x8009162C,audio-diag,diagnostic,Same as above (variant copying a message payload)
+DVDReadPrio,0x800ABCD4,audio-diag,diagnostic,Runs the original; logs negative results (stream load error)
+FUN_8000a7d8,0x8000A7D8,audio-diag,diagnostic,"JKRAram::mainRamToAram: runs the original; logs a 0 result (stream ARAM upload failure)"
+fetch__10SystemFileFv,0x801D5A60,cheats,implemented,"Save (record -> card buffer): runs the original with the player's earned unlock bits while P-menu Unlock all is on, so the cheat never reaches the memory card"
+store__10SystemFileFv,0x801D5CBC,cheats,implemented,"Load (card buffer -> record): runs the original, then takes the loaded unlock bits as the earned ones and re-applies Unlock all if it is on"

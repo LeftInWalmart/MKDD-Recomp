@@ -1,0 +1,9 @@
+key,value
+game_id,GM4E01
+title,Mario Kart Double Dash!!
+entry_point,0x80003154
+bss_start,0x80363FA0
+bss_size,451412
+main_dol_sha1,e389e50357d4a5076ab3d38672204658f411123d
+ghidra,12.1.4 + GameCubeLoader 1.3.0
+language,PowerPC:BE:32:Gekko_Broadway:default

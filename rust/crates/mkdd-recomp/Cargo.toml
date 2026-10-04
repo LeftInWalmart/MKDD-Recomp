@@ -1,0 +1,56 @@
+[package]
+name = "mkdd-recomp"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+gc-core = { path = "../gc-core" }
+gc-runtime = { path = "../gc-runtime" }
+mkdd-part-00 = { path = "../recomp/part_00" }
+mkdd-part-01 = { path = "../recomp/part_01" }
+mkdd-part-02 = { path = "../recomp/part_02" }
+mkdd-part-03 = { path = "../recomp/part_03" }
+mkdd-part-04 = { path = "../recomp/part_04" }
+mkdd-part-05 = { path = "../recomp/part_05" }
+mkdd-part-06 = { path = "../recomp/part_06" }
+mkdd-part-07 = { path = "../recomp/part_07" }
+mkdd-part-08 = { path = "../recomp/part_08" }
+mkdd-part-09 = { path = "../recomp/part_09" }
+mkdd-part-10 = { path = "../recomp/part_10" }
+mkdd-part-11 = { path = "../recomp/part_11" }
+mkdd-part-12 = { path = "../recomp/part_12" }
+mkdd-part-13 = { path = "../recomp/part_13" }
+mkdd-part-14 = { path = "../recomp/part_14" }
+mkdd-part-15 = { path = "../recomp/part_15" }
+mkdd-part-16 = { path = "../recomp/part_16" }
+mkdd-part-17 = { path = "../recomp/part_17" }
+mkdd-part-18 = { path = "../recomp/part_18" }
+mkdd-part-19 = { path = "../recomp/part_19" }
+mkdd-part-20 = { path = "../recomp/part_20" }
+mkdd-part-21 = { path = "../recomp/part_21" }
+mkdd-part-22 = { path = "../recomp/part_22" }
+mkdd-part-23 = { path = "../recomp/part_23" }
+mkdd-part-24 = { path = "../recomp/part_24" }
+mkdd-part-25 = { path = "../recomp/part_25" }
+mkdd-part-26 = { path = "../recomp/part_26" }
+mkdd-part-27 = { path = "../recomp/part_27" }
+mkdd-part-28 = { path = "../recomp/part_28" }
+mkdd-part-29 = { path = "../recomp/part_29" }
+mkdd-part-30 = { path = "../recomp/part_30" }
+mkdd-part-31 = { path = "../recomp/part_31" }
+mkdd-part-32 = { path = "../recomp/part_32" }
+mkdd-part-33 = { path = "../recomp/part_33" }
+mkdd-part-34 = { path = "../recomp/part_34" }
+mkdd-part-35 = { path = "../recomp/part_35" }
+mkdd-part-36 = { path = "../recomp/part_36" }
+mkdd-part-37 = { path = "../recomp/part_37" }
+mkdd-part-38 = { path = "../recomp/part_38" }
+mkdd-part-39 = { path = "../recomp/part_39" }
+mkdd-part-40 = { path = "../recomp/part_40" }
+mkdd-part-41 = { path = "../recomp/part_41" }
+mkdd-part-42 = { path = "../recomp/part_42" }
+mkdd-part-43 = { path = "../recomp/part_43" }
+mkdd-part-44 = { path = "../recomp/part_44" }
+mkdd-part-45 = { path = "../recomp/part_45" }
+mkdd-part-46 = { path = "../recomp/part_46" }
+mkdd-part-47 = { path = "../recomp/part_47" }
