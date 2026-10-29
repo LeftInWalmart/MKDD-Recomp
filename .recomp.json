@@ -1,0 +1,14 @@
+{
+  "$schema": "https://recomp.fyi/schema/v1.json",
+  "game": "Mario Kart: Double Dash!!",
+  "wikidata": "Q5721431",
+  "system": "GameCube",
+  "type": "recomp",
+  "original": { "region": "USA", "serial": "GM4E01" },
+  "project": "MKDD-Recomp",
+  "status": "released",
+  "targets": ["Windows"],
+  "toolchain": ["Ghidra", "Bevy"],
+  "approach": "Static recompilation of main.dol from Ghidra p-code into Rust (Spreadsheet Method), with an HLE console runtime and a Bevy host",
+  "maintainers": [{ "name": "LeftInWalmart", "link": "https://github.com/LeftInWalmart" }]
+}
